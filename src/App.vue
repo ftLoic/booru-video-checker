@@ -86,7 +86,6 @@ export default {
       this.flags = [];
 
       const mediainfo = await MediaInfoFactory({ locateFile: () => "MediaInfoModule.wasm" });
-      console.log(mediainfo);
 
       this.$refs.video.src = URL.createObjectURL(file);
 
