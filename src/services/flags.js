@@ -11,7 +11,7 @@ export default [
   {
     name: "Aspect Ratio",
     description: "Except for some exotic aspect ratios (like movies), the aspect ratio of your video should be 640x480 (4:3) or 854x480 (16:9).",
-    expected: "AVC",
+    expected: "640x480 or 854x480",
     ffmpeg: '-vf "scale=<width>:480"',
     check: CheckerService.aspectRatioCheck
   },
