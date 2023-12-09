@@ -1,6 +1,6 @@
 # booru-video-checker
 
-Unreliable video property checker for [https://sakugabooru.com/](sakugabooru.com) using [https://github.com/buzz/mediainfo.js](mediainfo.js).
+Unreliable video property checker for [sakugabooru.com](https://sakugabooru.com/) using [mediainfo.js](https://github.com/buzz/mediainfo.js).
 
 ## Project Setup
 
