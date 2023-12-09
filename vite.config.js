@@ -7,7 +7,20 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/booru-video-checker/',
+  default: '/booru-video-checker/',
+  build: {
+    plugins: [
+      vue(),
+      viteStaticCopy({
+        targets: [
+          {
+            src: "MediaInfoModule.wasm",
+            dest: '',
+          }
+        ]
+      })
+    ]
+  },
   plugins: [
     vue(),
     viteStaticCopy({
