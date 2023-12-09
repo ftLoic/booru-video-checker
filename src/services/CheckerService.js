@@ -15,7 +15,7 @@ class CheckerService {
     return args;
   }
 
-  audioTrack(service, tracks) {
+  audioTrackCheck(service, tracks) {
     const audioTracks = service.getTracks(tracks, "Audio").length;
 
     return {
@@ -63,7 +63,7 @@ class CheckerService {
     const video = service.getTrack(tracks, "Video");
 
     return {
-      mode: Math.abs(1 - video.PixelAspectRatio) <= 0.002 ? "valid" : "error",
+      mode: Math.abs(1 - video.PixelAspectRatio) <= 0.004 ? "valid" : "error",
       arg: video.PixelAspectRatio
     };
   }
@@ -165,7 +165,7 @@ class CheckerService {
     };
   }
 
-  chromaSubsampling(service, tracks) {
+  chromaSubsamplingCheck(service, tracks) {
     const video = service.getTrack(tracks, "Video");
     if (!video.ChromaSubsampling) {
       return;

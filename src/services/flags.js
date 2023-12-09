@@ -45,7 +45,7 @@ export default [
     description: "Your video shouldn't have an audio track.",
     expected: "0",
     ffmpeg: "-an",
-    check: CheckerService.audioTrack
+    check: CheckerService.audioTrackCheck
   },
   {
     name: "Bit Depth",
@@ -59,7 +59,7 @@ export default [
     description: "Your video should have a Chroma subsampling of 4:2:0 to avoid compatibility problems (particularly with non-Chromium-based or mobile browsers).",
     expected: "4:2:0",
     ffmpeg: "-pix_fmt yuv420p",
-    check: CheckerService.chromaSubsampling
+    check: CheckerService.chromaSubsamplingCheck
   },
   {
     name: "CRF",
