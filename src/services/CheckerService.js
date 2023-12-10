@@ -279,7 +279,7 @@ class CheckerService {
     }
 
     return {
-      mode: (video.Format_Profile == "Baseline" || video.Format_Profile == "Main" || video.Format_Profile == "High") ? "valid" : "error",
+      mode: video.Format_Profile == "Baseline" || video.Format_Profile == "Main" || video.Format_Profile == "High" ? "valid" : "error",
       arg: video.Format_Profile
     };
   }

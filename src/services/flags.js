@@ -71,7 +71,7 @@ export default [
     name: "Rate Control",
     description: "In order to preserve video quality, the rate control of your video should be Constant Rate Factor (CRF). Constant Bit Rate (CBR) is strongly discouraged.",
     expected: "crf",
-    ffmpeg: '-crf <crf>',
+    ffmpeg: "-crf <crf>",
     check: CheckerService.rateControlCheck
   },
   {
@@ -118,5 +118,5 @@ export default [
     expected: "BT.709 / BT.709 / BT.709",
     ffmpeg: "-color_primaries bt709 -color_trc bt709 -colorspace bt709",
     check: CheckerService.colorSpaceCheck
-  },
+  }
 ];
