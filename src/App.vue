@@ -17,6 +17,12 @@
     <div class="max-w-[1000px] m-auto px-4 py-10 text-[#333]">
       <h4 class="text-xl font-bold">Report:</h4>
 
+      <template v-if="flags.length > 0">
+        <p v-if="ohNoFlags == 0">No potential problems were found.</p>
+        <p v-else-if="ohNoFlags == 1">1 potential problem was found.</p>
+        <p v-else>{{ ohNoFlags }} potential problems were found.</p>
+      </template>
+
       <NoticeItem v-for="item of sortedFlags" :item="item" v-bind:key="item.flag.name" class="mt-6"></NoticeItem>
 
       <div v-if="unknownFlags.length > 0" class="mt-5">Some parameters couldn't be checked: {{ unknownFlags.join(", ") }}. They might not be accessible with the codec of your video.</div>
@@ -67,6 +73,9 @@ export default {
       });
 
       return newFlags;
+    },
+    ohNoFlags() {
+      return this.flags.filter(f => f.result.mode !== "valid").length;
     }
   },
   methods: {
