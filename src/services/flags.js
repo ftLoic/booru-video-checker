@@ -115,7 +115,7 @@ export default [
   },
   {
     name: "Color Space",
-    description: "The color space of your video should be tagged as BT.709, except for DVD releases. The color spaces of a 480p video will be assumed incorrectly by the browser if they're not tagged.",
+    description: "The color space of your video should be tagged as BT.709, except for some exceptions (like DVD releases). The color space of a 480p video will be assumed incorrectly by the browser if they're not tagged.",
     expected: "BT.709 / BT.709 / BT.709",
     ffmpeg: "-color_primaries bt709 -color_trc bt709 -colorspace bt709",
     check: CheckerService.colorSpaceCheck
