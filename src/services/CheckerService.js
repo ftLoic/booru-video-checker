@@ -117,9 +117,16 @@ class CheckerService {
       return;
     }
 
+    if (Math.abs(parseFloat(video.FrameRate_Maximum ?? "0") - parseFloat(video.FrameRate_Minimum ?? "0")) > 1) {
+      return {
+        mode: "error",
+        arg: video.FrameRate_Mode
+      };
+    }
+
     return {
-      mode: video.FrameRate_Mode == "CFR" ? "valid" : "error",
-      arg: video.FrameRate_Mode
+      mode: "valid",
+      arg: video.FrameRate_Mode + (video.FrameRate_Mode == "VFR" ? "(?)" : "")
     };
   }
 
