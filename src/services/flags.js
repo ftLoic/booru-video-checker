@@ -62,6 +62,13 @@ export default [
     check: CheckerService.chromaSubsamplingCheck
   },
   {
+    name: "Rate Control",
+    description: "In order to preserve video quality, the rate control of your video should be Constant Rate Factor (CRF). Constant Bit Rate (CBR) is strongly discouraged.",
+    expected: "crf",
+    ffmpeg: '-crf <crf>',
+    check: CheckerService.rateControlCheck
+  },
+  {
     name: "CRF",
     description: "The recommended Constant Rate Factor (CRF) should be 16 or less.",
     expected: "≤ 16",

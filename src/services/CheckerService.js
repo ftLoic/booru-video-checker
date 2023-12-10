@@ -24,6 +24,23 @@ class CheckerService {
     };
   }
 
+  rateControlCheck(service, tracks) {
+    const video = service.getTrack(tracks, "Video");
+    if (!video.Encoded_Library_Settings) {
+      return;
+    }
+
+    const rcArg = service.getx264Args(video.Encoded_Library_Settings).rc;
+    if (!rcArg) {
+      return;
+    }
+
+    return {
+      mode: rcArg === "crf" ? "valid" : "error",
+      arg: rcArg
+    };
+  }
+
   crfCheck(service, tracks) {
     const video = service.getTrack(tracks, "Video");
     if (!video.Encoded_Library_Settings) {
