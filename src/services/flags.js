@@ -104,6 +104,7 @@ export default [
     name: "AQ Mode",
     description: "Your video should be encoded with an AQ mode of 3, as this handles dark scenes better and helps to prevent color banding/blocking.",
     expected: "3",
+    ffmpeg: "-x264-params aq-mode=3",
     check: CheckerService.aqModeCheck
   },
   {
