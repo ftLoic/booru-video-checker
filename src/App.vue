@@ -6,9 +6,7 @@
   <main class="bg-slate-100" @dragover.prevent @drop.prevent="dropFile">
     <div class="bg-white">
       <div class="max-w-[1000px] m-auto px-4 py-10">
-        <p class="mb-10">
-          Encoding videos for <a href="https://sakugabooru.com/" target="_blank">sakugabooru.com</a> can be a headache, and it's sometimes hard to figure out why your video looks bad or won't play on some devices. Booru Video Checker will help you identify and fix these problems.
-        </p>
+        <p class="mb-10">Encoding videos for <a href="https://sakugabooru.com/" target="_blank">sakugabooru.com</a> can be a headache, and it's sometimes hard to figure out why your video looks bad or won't play on some devices. Booru Video Checker will help you identify and fix these problems.</p>
 
         <div class="bg-blue-100 border-blue-400 border-4 border-dashed p-6 w-full text-center text-blue-400 font-bold text-lg cursor-pointer rounded" @click.self="$refs.file.click()">
           Click or drop a file here!
@@ -40,6 +38,8 @@
     <a class="font-bold hover:underline" href="https://github.com/buzz/mediainfo.js" target="_blank">mediainfo.js</a>
     by
     <a class="font-bold hover:underline" href="https://twitter.com/ftLoic" target="_blank">Loïc</a>
+    |
+    <a class="font-bold hover:underline" href="https://github.com/ftLoic/booru-video-checker" target="_blank">GitHub repo</a>
   </footer>
 </template>
 
@@ -81,7 +81,7 @@ export default {
       return newFlags;
     },
     ohNoFlags() {
-      return this.flags.filter(f => f.result.mode !== "valid").length;
+      return this.flags.filter((f) => f.result.mode !== "valid").length;
     }
   },
   methods: {
