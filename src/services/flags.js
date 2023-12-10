@@ -69,6 +69,12 @@ export default [
     check: CheckerService.rateControlCheck
   },
   {
+    name: "Video Buffering Verifier",
+    description: "In order to preserve video quality, the maximum bit rate/buffer size of your video should be removed",
+    expected: "Max. Bit Rate: None / Max. Buffer Size: None",
+    check: CheckerService.videoBufferingVerifierCheck
+  },
+  {
     name: "CRF",
     description: "The recommended Constant Rate Factor (CRF) should be 16 or less.",
     expected: "≤ 16",

@@ -41,6 +41,20 @@ class CheckerService {
     };
   }
 
+  videoBufferingVerifierCheck(service, tracks) {
+    const video = service.getTrack(tracks, "Video");
+    if (!video.Encoded_Library_Settings) {
+      return;
+    }
+
+    const args = service.getx264Args(video.Encoded_Library_Settings);
+
+    return {
+      mode: !args.vbv_maxrate && !args.vbv_bufsize ? "valid" : "error",
+      arg: `Max. Bit Rate: ${args.vbv_maxrate ?? "None"} / Max. Buffer Size: ${args.vbv_bufsize ?? "None"}`
+    };
+  }
+
   crfCheck(service, tracks) {
     const video = service.getTrack(tracks, "Video");
     if (!video.Encoded_Library_Settings) {
