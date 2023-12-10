@@ -54,7 +54,7 @@ class CheckerService {
     const video = service.getTrack(tracks, "Video");
 
     return {
-      mode: (video.Width == "854" && video.Height == "480") || (video.Width == "640" && video.Height == "360") ? "valid" : "warning",
+      mode: (video.Width == "854" && video.Height == "480") || (video.Width == "640" && video.Height == "480") ? "valid" : "warning",
       arg: video.Width + "x" + video.Height
     };
   }
