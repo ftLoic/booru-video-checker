@@ -23,7 +23,9 @@
         <p v-else>{{ ohNoFlags }} potential problems were found.</p>
       </template>
 
-      <NoticeItem v-for="item of sortedFlags" :item="item" v-bind:key="item.flag.name" class="mt-6"></NoticeItem>
+      <div id="flags">
+        <NoticeItem v-for="item of sortedFlags" :item="item" v-bind:key="item.flag.name" class="mt-6"></NoticeItem>
+      </div>
 
       <div v-if="unknownFlags.length > 0" class="mt-5">Some parameters couldn't be checked: {{ unknownFlags.join(", ") }}. They might not be accessible with the codec of your video.</div>
     </div>
