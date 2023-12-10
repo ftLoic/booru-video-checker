@@ -69,10 +69,10 @@ export default [
     check: CheckerService.rateControlCheck
   },
   {
-    name: "Video Buffering Verifier",
+    name: "Buffering Verifier",
     description: "In order to preserve video quality, the maximum bit rate/buffer size of your video should be removed",
     expected: "Max. Bit Rate: None / Max. Buffer Size: None",
-    check: CheckerService.videoBufferingVerifierCheck
+    check: CheckerService.bufferingVerifierCheck
   },
   {
     name: "CRF",
@@ -89,10 +89,28 @@ export default [
     check: CheckerService.presetCheck
   },
   {
+    name: "Deblock",
+    description: "High deblock values should be avoided, as this means more smoothing and less risk of blocking artefacts. The x264 tune options might affect the deblock values.",
+    expected: "≤ 1:1:1",
+    check: CheckerService.deblockCheck
+  },
+  {
+    name: "AQ Mode",
+    description: "Your video should be encoded with an AQ mode of 3, as this handles dark scenes better and helps to prevent color banding/blocking.",
+    expected: "3",
+    check: CheckerService.aqModeCheck
+  },
+  {
+    name: "AQ Strength",
+    description: "The AQ Strength of your video isn't within the recommended limits. The x264 tune options might affect the AQ Strength value.",
+    expected: "0.7 ≥ aq_strength ≥ 1",
+    check: CheckerService.aqStrengthCheck
+  },
+  {
     name: "Color Space",
     description: "The color space of your video should be tagged as BT.709, except for DVD releases. The color spaces of a video will be assumed incorrectly by the browser if they're not tagged.",
     expected: "BT.709 / BT.709 / BT.709",
     ffmpeg: "-color_primaries bt709 -color_trc bt709 -colorspace bt709",
     check: CheckerService.colorSpaceCheck
-  }
+  },
 ];

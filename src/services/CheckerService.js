@@ -41,7 +41,7 @@ class CheckerService {
     };
   }
 
-  videoBufferingVerifierCheck(service, tracks) {
+  bufferingVerifierCheck(service, tracks) {
     const video = service.getTrack(tracks, "Video");
     if (!video.Encoded_Library_Settings) {
       return;
@@ -179,11 +179,75 @@ class CheckerService {
       // other cases but common parameters w/ veryslow/placebo
       preset = "probably veryslow or placebo";
       mode = "valid";
+    } else {
+      // no preset detected
+      return;
     }
 
     return {
       mode: mode,
-      arg: preset ?? "UNKNOWN"
+      arg: preset
+    };
+  }
+
+  deblockCheck(service, tracks) {
+    const video = service.getTrack(tracks, "Video");
+    if (!video.Encoded_Library_Settings) {
+      return;
+    }
+
+    const deblockArg = service.getx264Args(video.Encoded_Library_Settings).deblock;
+    if (!deblockArg) {
+      return;
+    }
+
+    const deblockValues = deblockArg.split(":").map(parseFloat);
+    if (deblockValues.length < 2) {
+      return;
+    }
+
+    return {
+      mode: !(deblockValues[0] >= 1 && deblockValues[1] >= 1) ? "valid" : "warning",
+      arg: deblockArg
+    };
+  }
+
+  aqModeCheck(service, tracks) {
+    const video = service.getTrack(tracks, "Video");
+    if (!video.Encoded_Library_Settings) {
+      return;
+    }
+
+    const aqArg = service.getx264Args(video.Encoded_Library_Settings).aq;
+    if (!aqArg) {
+      return;
+    }
+
+    return {
+      mode: aqArg.startsWith("3") ? "valid" : "warning",
+      arg: aqArg[0]
+    };
+  }
+
+  aqStrengthCheck(service, tracks) {
+    const video = service.getTrack(tracks, "Video");
+    if (!video.Encoded_Library_Settings) {
+      return;
+    }
+
+    const aqArg = service.getx264Args(video.Encoded_Library_Settings).aq;
+    if (!aqArg) {
+      return;
+    }
+
+    const aqValues = aqArg.split(":").map(parseFloat);
+    if (aqValues.length < 2) {
+      return;
+    }
+
+    return {
+      mode: aqValues[1] >= 0.7 && aqValues[1] <= 1 ? "valid" : "warning",
+      arg: aqValues[1]
     };
   }
 
