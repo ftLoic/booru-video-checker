@@ -15,7 +15,7 @@
       <div class="ml-4">
         <h4 class="text-base tracking-wide font-bold mb-1">{{ item.flag.name.toUpperCase() }}</h4>
 
-        {{ item.flag.description.replace(/{arg}/g, item.result.arg) }}
+        <span v-html="item.flag.description.replace(/\n/g, '<br>')"></span>
 
         <div class="mt-1">
           Expected {{ item.flag.name }}:
