@@ -272,6 +272,18 @@ class CheckerService {
     };
   }
 
+  profileCheck(service, tracks) {
+    const video = service.getTrack(tracks, "Video");
+    if (!video.Format_Profile) {
+      return;
+    }
+
+    return {
+      mode: (video.Format_Profile == "Baseline" || video.Format_Profile == "Main" || video.Format_Profile == "High") ? "valid" : "error",
+      arg: video.Format_Profile
+    };
+  }
+
   bitCheck(service, tracks) {
     const video = service.getTrack(tracks, "Video");
     if (!video.BitDepth) {

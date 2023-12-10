@@ -3,10 +3,14 @@
     <h1>Booru Video Checker</h1>
   </header>
 
-  <main class="bg-slate-100">
+  <main class="bg-slate-100" @dragover.prevent @drop.prevent="dropFile">
     <div class="bg-white">
       <div class="max-w-[1000px] m-auto px-4 py-10">
-        <div class="bg-blue-100 border-blue-400 border-4 border-dashed p-6 w-full text-center text-blue-400 font-bold text-lg cursor-pointer rounded" @dragover.prevent @drop.prevent="dropFile" @click.self="$refs.file.click()">
+        <p class="mb-10">
+          Encoding videos for <a href="https://sakugabooru.com/" target="_blank">sakugabooru.com</a> can be a headache, and it's sometimes hard to figure out why your video looks bad or won't play on some devices. Booru Video Checker will help you identify and fix these problems.
+        </p>
+
+        <div class="bg-blue-100 border-blue-400 border-4 border-dashed p-6 w-full text-center text-blue-400 font-bold text-lg cursor-pointer rounded" @click.self="$refs.file.click()">
           Click or drop a file here!
           <video class="mt-6 m-auto h-[360px] rounded cursor-auto shadow-md" ref="video" muted autoplay loop controls @click="videoClick"></video>
           <input class="hidden" type="file" ref="file" accept="video/*" @change="changeFile" />
@@ -123,7 +127,10 @@ export default {
         });
     },
     analyze(tracks) {
-      console.log("Tracks:", tracks);
+      console.log("Tracks:");
+      for (let track of tracks) {
+        console.log(track);
+      }
 
       this.unknownFlags = [];
       this.flags = [];

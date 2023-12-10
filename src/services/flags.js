@@ -48,6 +48,12 @@ export default [
     check: CheckerService.audioTrackCheck
   },
   {
+    name: "Profile",
+    description: "The profile of your video should only be Baseline, Main or High to avoid compatibility problems (particularly with non-Chromium-based or mobile browsers). This might be related to the Chroma Subsampling/Bit Depth of your video.",
+    expected: "Baseline, Main or High",
+    check: CheckerService.profileCheck
+  },
+  {
     name: "Bit Depth",
     description: "Your video should be 8-bit to avoid compatibility problems (particularly with non-Chromium-based or mobile browsers).",
     expected: "8",
